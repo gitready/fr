@@ -1,12 +1,12 @@
 ---
 published: true
 layout: post
-title: rapatrier une branche distante en local
+title: rapatrier localement une branche distante 
 category: intermediate
 ---
 
 I frequently need to do this when setting up or syncing my various machines, and I seem to forget the command all the time. So let's say you've got more than one branch on your remote, and you want to bring it down into your local repository as well:
-J'ai souvent besoin de rapatrier une branche distante (_remote branch_) en local (_local branch_) lorsque j'initialise ou synchronise de nouveaux dépôts (_repo_) sur de nouvelles machines, mais j'oublie souvent la syntaxe de la commande. La situation est alors la suivante: vous avez des branches distantes que vous souhaitez  rapatrier en local afin de travailler avec. Il suffit de suivre (_track_) cette branche distante depuis une branche locale:
+J'ai souvent besoin de rapatrier une branche distante en local _local branch_ lorsque j'initialise ou synchronise de nouveaux dépôts (_repo_) sur de nouvelles machines, mais j'oublie souvent la syntaxe de la commande. La situation est alors la suivante: vous avez des branches distantes que vous souhaitez  rapatrier en local afin de travailler avec. Il suffit de suivre (_track_) cette branche distante depuis une branche locale:
 
 p=. !http://gitready.com/images/branches.png!
 

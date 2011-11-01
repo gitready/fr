@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: post
 title: utilité des alias de commandes
 category: intermediate

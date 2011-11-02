@@ -1,21 +1,21 @@
 ---
-published: false
+published: true
 layout: post
-title: pushing and pulling
+title: envoi et rapatriement
 category: beginner
 ---
 
-Today we're going to review another basic yet powerful concept that Git among other version control systems of its type has: distribution! As you may know, your commits are all local, and repositories are simply clones of each other. That means the real work in distributing your projects is in synchronizing the changes via @git push@ and @git pull@. 
+Aujourd'hui, nous allons voir un autre concept simple mais puissant, commun à plusieurs systèmes de contrôle de version, que Git implémente : la distribution ! Comme vous le savez peux-être, les commits sont locaux et les dépôts sont simplement des copies les uns des autres. Cela veut dire que le véritable travail de distribution de vos projets est dans la synchronization des changements par des envois (@git push@) et des rapatriements (@git pull@).
 
-If you're new to Git, you may think that this is too much overhead and one that leads to a breakdown of control. Look at it this way: if your central server goes down, you're usually hosed and prevented from working and collaborating with others. Since all of the work involved with actually creating revisions is done on your own machine, you can code whether the network is down without the permission of others or being subject to network issues. Did I mention it's a lot faster too for most routine operations? Check out some more of advantages (and disadvantages) of DVCS at "Wikipedia":http://en.wikipedia.org/wiki/Distributed_revision_control#Vs_Centralised.
+Si vous découvrer Git, vous pouvez penser que tout cela est trop compliqué et qu'on contrôle moins ce qu'on fait. Une manière de voir les choses serait de se dire que si votre serveur central était défaillant, vous êtes mal et vous ne pouvez ni travailler ni collaborer avec les autres. Comme tout le travail de gestion des versions est fait sur votre machine, vous pouvez continuer à travailler même si le réseau ne fonctionne pas, sans nécessiter la permission de personnes tierces ou avec un réseau instable. Vous ai-je dit que cette organisation était plus rapide pour la plupart des opérations courantes ? Voici une list des avantages et inconvénients des SGVD sur "Wikipedia":http://en.wikipedia.org/wiki/Distributed_revision_control#Vs_Centralised.
 
-"Oliver Steele":http://osteele.com has whipped up a great image of how pushing and pulling works:
+"Oliver Steele":http://osteele.com nous a préparé un dessin du fonctionnement de l'envoi et du rapatriement:
 
 p=. !http://osteele.com/images/2008/git-transport.png!
 
-The topmost part of the diagram is easy, that's committing your changes to "the staging area":http://gitready.com/beginner/2009/01/18/the-staging-area.html. Once that's done, your version control is essentially in place, but now we want to synchronize it with our remote repository. This could be on a hosting site like "GitHub":http://github.com, your work's main git server, a production machine, or even another coworker's repository. Once the changes have been delivered, others can @pull@ them down and work with them. With most actions in Git there's a few options, but let's stick with @pull@ for today.
+La partie supérieure du schéma est facile à comprendre, il s'agit d'ajouter des changements à "la zone de transit":http://gitready.com/beginner/2009/01/18/the-staging-area.html. Après cette opération, la gestion des version est en place, mais il vous faut maintenant synchroniser vos données avec votre dépôt distant. Ce dernier peut se trouver sur un serveur d'hébergement comme "GitHub":http://github.com, le serveur git de votre entreprise, une machine de production, ou bien le dépôt d'un de vos collègues. Une fois que vos changement ont été envoyés, d'autres personnes peuvent rapatrier (@pull@) ces données et travailler avec. Pour chaque opération dans Git, il y a plusieurs options, mais aujourd'hui nous ne considérerons que la commande @pull@.
 
-Let's go through a real world example. I've just added the "Twitter":http://twitter.com/gitready link at the bottom of this blog. I want to @push@ my changes up to the project's "GitHub repository":http://github.com/qrush/gitready so I can update the server. The syntax of this command is usually @git push <remote> <branch>@. A remote is basically the address of a cloned repository. It's got pretty much all of the same data and history, it's just waiting to get updated. Usually most projects work with an @origin@ remote, and the @master@ branch by default.
+Regardons ensemble un exemple concret. Je viens d'ajouter un lien "Twitter":http://twitter.com/gitready au bas de la page de ce blog. Je veux envoyer (@push@) mes modifications dans le projet "dépôt GitHub":http://github.com/qrush/gitready pour pouvoir mettre à jour le serveur. La syntaxe de cette commande est généralement la suivante @git push <remote> <branch>@. l'argument remote est simplement l'adresse d'une copie du dépôt. Celle ci contient les même données et le même historique, il ne reste plus qu'à le mettre à jour. La plupart des projets ont une branche distante @origin@, et une branche @master@ par défaut.
 
 <pre>
 $ git commit -am "Adding twitter link"
@@ -31,9 +31,9 @@ $ git push origin master
      361303d..f2cd831  master -> master
 </pre>
 
-Now our remote repository is updated, and if you visit GitHub "you'd be able to see the commits":http://github.com/qrush/gitready/commits/master. The output this command prints out has to deal with how Git transfers over the various blobs of data that have changed, and then lets us know that the repository has been updated by showing the changed SHA1. 
+Maitenant notre dépôt distant est mis à jour, si vous vous rendez sur la page suivante de Github vous "verrez les commits":http://github.com/qrush/gitready/commits/master. La sortie de cette commande nous indique la manière utilisée par Git pour transférer les blobs de données qui ont changé, et nous informe que le dépôt a été mis à jour en précisant la nouvelle valeur du SHA1. 
 
-But what about @pull@? We can use that to update any other repositories with the commits I just synchronized. The project's crappy deploy script does exactly that:
+Qu'en est-il de la commande @pull@ ? On peut utilsier cett commande pour mettre à jour n'importe quel dépôt avec les commits qui viennent d'être synchronisés. C'est exactement ce que fait le script minable de déploiement de notre projet :
 
 <pre>
 $ git pull origin master
@@ -46,6 +46,7 @@ $ git pull origin master
     1 files changed, 1 insertions(+), 0 deletions(-)
 </pre>
 
-The output shows us that the repository living on the server has some changes to bring in from remote repository, and it proceeds to bring them in. This process would be exactly the same if you wanted to bring in changes that another person committed to your repository. Those who have "forked the gitready repository":http://github.com/qrush/gitready/network/members on GitHub can also now get the changes I've made. Future tutorials will go over that process more in depth.
+Cette sortie nous montre que le dépôt du serveur a des changements à importer d'un dépôt distant, et il les importe. L'opération serait exactement la même si vous vouliez importer des changements qu'une autre personne aurait ajouté à votre dépôt.
+Ceux qui ont "forké le dépôt gitready":http://github.com/qrush/gitready/network/members sur GitHub peuvent également voir les changements que j'ai fait. D'autre didacticiels couvrerons cet aspect en profondeur.
 
-If you can think of any other ideas or concepts that were missed (we'll save refspecs for later tutorials), let us know.
+Si vous avez d'autres idées ou concepts que nous aurions oubliés (nous parlerons des refspecs dans un prochain didacticiel), merci de nous le faire savoir.

@@ -1,20 +1,20 @@
 ---
-published: false
+published: true
 layout: post
-title: ignoring doesn't remove a file
+title: ignorer un fichier ne le détruit pas
 category: beginner
 ---
 
-One problem I see quite often in the #git channel on Freenode is that beginners get confused as to why a file doesn't disappear from history when they place it into their ".gitignore":http://gitready.com/beginner/2009/01/19/ignoring-files.html file. The answer to this is quite simple! When you tell Git to ignore files, it's going to *only* stop watching changes for that file, and nothing else. This means that the history will still remember the file and have it.
+Un problème que je rencontre souvent sur le canal #git sur Freenode est celui du débutant surpris de voir un fichier dans l'historique alors que celui ci est décrit dans le fichier ".gitignore.":http://gitready.com/beginner/2009/01/19/ignoring-files.html  La réponse à cette question est assez simple ! La réponse est assez simple ! Quand vous demander à Git d'ignorer des fichiers, cela ne fait qu'arrêter de suivre les modifications d'un fichier, et rien d'autre. Cela entraine que l'historique se souviendra de ce fichier et le conservera.
 
-If you want to remove a file from the repository, but keep it in your working directory, simply use:
+Si vous voulez supprimer un fichier de votre dépôt, mais que vous voulez le garder dans votre répertoire de travail, utiliser la commande suivante:
 
 @git rm --cached <file>@
 
-However, this will still keep the file in history. If you actually want to remove it from history, you really have two options: rewrite your repository's commits, or start over. Both options really suck, and that's for a good reason: Git tries hard not to lose your data. Just like with "rebasing":http://gitready.com/intermediate/2009/01/31/intro-to-rebase.html, Git forces you to think about these kinds of options since they are destructive operations.
+Cependant, le fichier sera conservé dans votre historique. Si vous voulez le supprimer de votre historique, vous avez deux options: réécrire les commits ou recommencer tout. Ces deux options sont mauvaises, et pour une bonne raison: Git essaie au maximum de ne pas perdre vod données. Comme pour le "rebasing":http://gitready.com/intermediate/2009/01/31/intro-to-rebase.html, Git vous force à faire consciemment ces opérations parce qu'elles entrainent une perte de données.
 
-If you did actually want to remove a file from history, @git filter-branch@ is the hacksaw you're looking for. Definitely read up on its "manpage":http://www.kernel.org/pub/software/scm/git/docs/git-filter-branch.html before using it, since it will literally rewrite your project's commits. This actually is a great tool for some actions, and can do all sorts of stuff like totally removing an author's commits to moving the project root folder around. The command to remove a file from all revisions is:
+Si vous voulez vraiment retirer un fichier de l'historique, @git filter-branch@ est l'outil qu'il vous faut. Il vous faudra lire "le manuel":http://www.kernel.org/pub/software/scm/git/docs/git-filter-branch.html avant de l'utiliser, car cette commande réécrit les commits relatifs au projet. C'est un bon outil pour pas mal d'opérations, et il permet de faire beaucoup de choses comme supprimer entièrement les commits d'un auteur ou de déplacer la racine d'un projet. La commande pour supprimer un fichier de toutes les versiosn est la suivante:
 
 @git filter-branch --index-filter 'git rm --cached <file>' HEAD@
 
-This action can definitely be useful when you need to blow out sensitive or confidential information that may have been placed in your repository. More tips in the future will cover some of the other neat things @filter-branch@ can do. If you know of any useful tips regarding it, let us know in the comments or "submit a tip!":http://gitready.com/submit.html
+Cette opération est utile quand vous avez besoin de détruire des informations sensibles ou confidentielles que vous pourriez avoir dans votre dépôt. A l'avenir,  plus d'astuces vous montrerons tout ce que @filter-branch@ peut faire. Si vous connaissez une astuce sur ce sujet, Merci de nous le faire savoir dans les commentaires ou "proposer une astuce!":http://gitready.com/submit.html

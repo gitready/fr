@@ -1,11 +1,11 @@
 ---
-published: false
+published: true
 layout: post
-title: smartly save stashes
+title: sauvegarder intelligemment des branches temporaires
 category: beginner
 ---
 
-I seem to be using "stashing":http://gitready.com/beginner/2009/01/10/stashing-your-changes.html more and more, and I've found that seeing the stash list output looking like this isn't very helpful:
+J'utilise de plus en plus "les branches temporaires":http://gitready.com/beginner/2009/01/10/stashing-your-changes.html, et je trouve que la sortie de la commande "stash list" n'est pas très utile:
 
 <pre>
 $ git stash list
@@ -14,13 +14,13 @@ stash@{1}: WIP on master: b50788b... First pass...
 stash@{2}: WIP on shoulda: e783fb0... Upgrading the rest...
 </pre>
 
-Sure, it's got the commit SHA and message that your work was based off of, but if you're anything like me, you forgot what you worked on the moment you stashed the changes and opened up that dreaded bug ticket that took hours to finish.
+Bien sûr, il y a le SHA relatif au commit et le message précisant la cible de votre travail, mais si vous travailler ne serait-ce qu'un peut comme moi, vous avez oublié ce sur quoi vous aviez travaillé   aprés avoir créé cette branche temporaire des changements et avoir passé des heures sur uen résolution de bugs. 
 
-Instead, stashing like this is a lot better when you're trying to figure out what you actually threw in there:
+Il vaut mieux créer une branche temporaire de la manière suivante si vous vous voulez vraiment savoir ce qu'elle contient:
 
 @git stash save "your message here"@
 
-Now, your stashes will look a lot cleaner and hopefully help you save some time when pulling information out of there.
+Maintenant, vos branches temporaires seront plus claires et j'espère que cela vous aidera à gagner du temps et vous aidera lors de vos rapatriements de données depuis ces branches temporaires.
 
 <pre>
 $ git stash list
@@ -29,7 +29,7 @@ stash@{1}: On master: started merge but need to fix #104 first
 stash@{2}: On feature1: Adding some stuff
 </pre>
 
-If you need to see what's been changed for a certain stash, you can simply pass in the treeish for the stash, given in the @git stash list@ output. The <code>stash@{<number>}</code> part shows you how to reference that changeset. Simply pass it into @git diff@ to figure out what was changed:
+Si vous voulez savoir ce qui a changé pour une branche temporaire, vous pouvez simplement les données de description de l'arbre pour cette branche temporaire, précisées dans la sortie de la commande @git stash list@. Ce bout de code <code>stash@{<number>}</code> vous précise comment faire référence à cet ensemble de changement. Il suffit de le préciser en argument de la commande @git diff@ pour voir ce qui a changé :
 
 <pre>
 $ git diff stash@{0}
@@ -46,4 +46,4 @@ index b0ecaeb..4ca398c 100644
 \ No newline at end of file
 </pre>
 
-You could also use @git show@ to see the commit it was based off of as well. If you've got more stash related tips or others that you can think of, "let us know!":http://gitready.com/submit.html
+Vous pouvez également utiliser @git show@  pour voir le comit sur lequel il a été basé. Si vous avez d'autres astuces sur les branches temporaires ou d'autres sujets, "faites le savoir !":http://gitready.com/submit.html

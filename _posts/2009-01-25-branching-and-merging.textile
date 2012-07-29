@@ -1,19 +1,19 @@
 ---
-published: false
+published: true
 layout: post
-title: branching and merging
+title: branchements et fusions
 category: beginner
 ---
 
-Branching in git is easier than you'd think. It's fast (40 characters written to a file), simple (one command to create a branch), and efficient (it doesn't create a whole copy of your current working state). The branches you create don't have to exist in the remote repository, so you can use them to test out new features or bug fixes without breaking what's already working. Perhaps "Why Git is Better Than X":http://whygitisbetterthanx.com/#cheap-local-branching puts it best: 
+Créer des branches dans git est plus simple que vous le pensez. C'est rapide (40 caractères à écrire dans un fichier), simple (une commande pour créer une branche), et efficace ( aucune copie intégrale de l'état courant de votre travil n'est créé). Les bracnhes que vous créer n'ont pas à exister dans le dépôt distant, vous pouvez donc les utiliser pour tester vos nouvelles fonctionnalités ou corrections de bugs sans casser ce qui a déjà été fait. L'article "Pourquoi Git est meilleur que X":http://whygitisbetterthanx.com/#cheap-local-branching décrit les arguments suivants :
 
 <blockquote>
-Git will allow you to have multiple local branches that can be entirely independent of each other and the creation, merging and deletion of those lines of development take seconds. [...] Git makes this process incredibly easy and it changes the way most developers work when they learn it. 
+Git vous permettra d'avoir plusieurs branches en local qui peuvent être complétement indépendantes les unes des autres et la création, la fusion et la suppression de ces développements ne prendra que quelques secondes. [...] Git rends ce processsus incroyablement simple et cela change la manière de travailler de la plupart des développeurs une fois qu'ils l'ont appris. 
 </blockquote>
 
-That's nice and all, but you may still be afraid to use branches just because of the stigmas associated with your previous (or lack thereof) version control system's way of handling this topic. Worry no longer, we're going to go over a simple example of branching and merging, and resolving a conflict.
+Tout cela est parfait mais vous pouvez encore être effrayé d'utiliser les branches à cause des mauvais souvenirs laissés par la manière dont votre système de gestion de version gérait cela (si il le gérait). Ne vous en faite pas, nous allons voir un exemple simple de branchement et de fusion, et de résolution de conflits de version.
 
-I'm working once again with the "jekyll":http://github.com/qrush/jekyll repository. I'm going to check out a new branch, make some changes in a file, and then merge it back into the master branch.
+Je travaille à nouveau sur le dépôt "jekyll":http://github.com/qrush/jekyll. Je vais créer une nouvelle branche, y faire des changements et incorporer les changements dans la branche master initiale.
 
 <pre>
 $ git checkout -b fixes
@@ -34,10 +34,9 @@ $ git merge fixes
    lib/jekyll/core_ext.rb |   16 +++++++++++++++-
     1 files changed, 15 insertions(+), 1 deletions(-)
 </pre>
+Et c'est tout ! Si nous voulions supprimer cette branche, un @git branch -d fixes@ la supprimerai. Comme il est si facile de créer une branche et de travailler dessus indépendamment, intégrer cette possibilité dans votre processus de travail est d'une grande utilité. Par exemple, "Josh Susser":http://blog.hasmanythrough.com a écrit un bon article sur son "utilisation des branches pour travailler sur des scénarios utilisateurs.":http://blog.hasmanythrough.com/2008/12/18/agile-git-and-the-story-branch-pattern
 
-And that's it! If we wanted to delete the branch, doing a @git branch -d fixes@ would remove it. Since it's so easy to create a branch and work on it separately, integrating this proces into your workflow can be quite beneficial. For instance, "Josh Susser":http://blog.hasmanythrough.com has a great post about how he "uses branches to work on user stories.":http://blog.hasmanythrough.com/2008/12/18/agile-git-and-the-story-branch-pattern
-
-That's a really simple example of a fast-forward merge though, and is not always the case of what happens. Let's go through a change I made on the same line of a file in both my master branch and a new branch and see how Git reacts:
+Ceci n'est qu'un exemple simple de fusion avec bon en avant, pas forcément représentatif de la réalité. Regardons ensemble un exemple de modification effectuée sur la même ligne d'un fichier présent dans ma branche master et ma noubvelle branche et voyons comment Git réagit :
 
 <pre>
 $ vim lib/jekyll/core.rb
@@ -63,11 +62,11 @@ $ git merge conflicts
   Automatic merge failed; fix conflicts and then commit the result.
 </pre>
 
-Opening up the file will reveal that git shows us the difference in versions for this hunk of text: 
+En ouvrant ce fichier, on découvre que git nous montre les différences de chaque versions de ce bout de code : 
 
 p=. !/images/conflicts.png!
 
-If we do a @git status@ it should still show our conflict. Since we want to keep the one from my new version, simply delete the lines that Git plopped in there and the old version. Then just @add@ and @commit@ the file as normal, and your merge is resolved!
+Un @git status@ nous montre qu'un conflit de version est toujours présent. Comme nous voulons garder la version que je viens de créer, il suffit de supprimer les lignes que git a crée et l'ancienne version. Puis ajouter les fichiers à l'index (@add@) et commiter (@commit@) comme d'habitude, et votre conflit de fusion est résolu !
 
 <pre>
 $ git status
@@ -85,7 +84,7 @@ $ git commit -am "Fixing conflict!"
   Created commit 9c8e9fd: Fixing conflict!
 </pre>
 
-This creates a special commit that has two parent commits from each of the branches that we merged:
+Cette commande crée un commit spécial qui a deux commits parents pour chacune des branches que nous avons fusionnés : 
 
 <pre>
 $ git show HEAD
@@ -97,5 +96,5 @@ $ git show HEAD
       Fixing conflict!
 </pre>
 
-Future tips will cover using helpers for this process, like "git-mergetool":http://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html and @gitk --merge@. If you know of good tutorials on these or other ways to do merging, "submit a tip!":http://gitready.com/submit.html In the meantime check out "Scott Chacon's gitcast on this topic":http://gitcasts.com/posts/branching-and-merging or the "Git Community Book's guide.":http://book.git-scm.com/3_basic_branching_and_merging.html if you'd like more information on the subject.
+D'autres astuces nous montrerons comment utiliser des programmes d'aide pour simplifier cette opération, comme "git-mergetool":http://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html et @gitk --merge@. Si vous connaisser un bon didacticiel pour ce sujet ou une autre manière de faire des fusions, "Proposer une astuce !":http://gitready.com/submit.html En attendant, jeter un cop d'oeil au "gitcast de Scott Chacon sur ce sujet":http://gitcasts.com/posts/branching-and-merging ou le "Git Community Book's guide.":http://book.git-scm.com/3_basic_branching_and_merging.html si vous voulez plus d'information sur la sujet.
 

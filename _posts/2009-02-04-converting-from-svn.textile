@@ -1,38 +1,39 @@
 ---
-published: false
+published: true
 layout: post
-title: converting from svn
+title: conversion depuis svn
 category: beginner
 ---
 
-You're probably reading this for one of a few reasons:
+Vous lisez cette page pour uen de ces raisons:
 
-* You're a longtime SVN user and want to see what Git is all about
-* You want to know how much of a pain switching to Git is
-* You hate SVN and want to see what's better
+* Vous utilisez SVN depuis longtemps et vous voulez savoir comment fonctionne Git
+* Vous voulez savoir si il est pénible de migrer vers Git
+* Vous détestez SVN et vous voulez voir ce qui se fait de mieux.
 
-Instead of contributing to the mass of tutorials already written about the subject, I figured I would take the <s>easy</s> useful way out and compose a list of great tutorials on how to accomplish a migration to Git for those who are familiar with SVN. If you have more links, please comment away and I'll add them in.
+Au lieu d'ajouter à l'ensemble des didaticiels existants sur le sujet, je me suis dit que l'astuce qui vous serait le plus utile (et <s>facile</s> pour moi) serait de lister les bons didacticiels sur la manière de migrer vers Git pour les utilisateurs de SVN.
+Si vous avez plus de liens, merci de les préciser dans les commentaires, ils seront ajoutés.
 
-*Transition Tutorials*
-_These tutorials describe just how different the two version control systems are and go over how they work on a (mostly) high level._
+*Didacticiels pour la transition*
+_Ces didacticiels décrivent les différences entre les deux systèmes de gestion de version et leurs utilisations respectives à un assez haut niveau d'abstraction.
 
-* "Git SVN Workflow":http://andy.delcambre.com/2008/03/04/git-svn-workflow.html
-* "GitSvnComparsion":http://git.or.cz/gitwiki/GitSvnComparsion
-* "An introduction to git-svn for Subversion/SVK users and deserters":http://utsl.gen.nz/talks/git-svn/intro.html
+* "l'organisation du travail avec Git & SVN":http://andy.delcambre.com/2008/03/04/git-svn-workflow.html
+* "Comapraison Git Svn":http://git.or.cz/gitwiki/GitSvnComparsion
+* "Une introduction à git-svn pour les utilsateurs et les déserteurs de subversion/SVK":http://utsl.gen.nz/talks/git-svn/intro.html
 
-*Command Tutorials*
-_These tutorials focus on learning commands that perform common actions between the two systems._
+*Didacticiels pour les commandes*
+_Ces didacticiels font le point sur les commandes qui ont la même action entre les deux systèmes._
 
-* "Git - SVN Crash Course":http://git.or.cz/course/svn.html
-* "Howto use Git and svn together":http://flavio.castelli.name/howto_use_git_with_svn
-* "git[-svn] in 30 minutes":http://michael-prokop.at/blog/2007/12/03/git-svn-in-30-minutes/
+* "Git - SVN Cours intensifs":http://git.or.cz/course/svn.html
+* "Comment utiliser Git et svn ensemble":http://flavio.castelli.name/howto_use_git_with_svn
+* "git[-svn] en 30 minutes":http://michael-prokop.at/blog/2007/12/03/git-svn-in-30-minutes/
 
-*Migration Tutorials*
-_These tutorials elaborate on how you can import your history from SVN and how to work with others who may not be converted yet._
+*Didacticiels pur les migrations*
+_Ces didacticiels nous montrent comment vous pouvez importer votre historique de versions depuis SVN et comment travailler avec d'autres personnes toujours sur SVN._
 
-* "Converting Subversion repositories to Git":http://weblog.redlinesoftware.com/2008/2/24/converting-subversion-repositories-to-git
-* "Converting a Shared Subversion Repository to Git":http://notahat.com/posts/25
-* "How to convert from Subversion to Git":http://pauldowman.com/2008/07/26/how-to-convert-from-subversion-to-git/
-* "git-svn is a gateway drug":http://www.robbyonrails.com/articles/2008/04/10/git-svn-is-a-gateway-drug
+* "Migrer un dépôt Subversion en un dépôt Git":http://weblog.redlinesoftware.com/2008/2/24/converting-subversion-repositories-to-git
+* "Migrer un dépôt Subversion partagé vers Git":http://notahat.com/posts/25
+* "Comment migrer de Subversion vers Git":http://pauldowman.com/2008/07/26/how-to-convert-from-subversion-to-git/
+* "git-svn est une passerelle addictive":http://www.robbyonrails.com/articles/2008/04/10/git-svn-is-a-gateway-drug
 
-Tips related to git-svn are still more than welcome, be it configuration options, bugs/issues you ran into, etc. "Submit away":/submit.html if you have great ideas!
+Des astuces sur git-svn sont les bienvenues, que cela soit des options de configuration, des bugs/problèmes rencontrés, etc ... "Proposer ":/submit.html vos éventuelles idées !

@@ -5,28 +5,28 @@ title: how git stores your data
 category: beginner
 ---
 
-This is an extremely broad overview on how the Git object model works, based mostly on the "Git Community Book":http://book.git-scm.com/1_the_git_object_model.html. Future posts will definitely look into the object model in more depth, but this information is definitely essential to those who are learning Git. The images from this post were taken from my presentation on "Open Source Collaboration with Git and GitHub.":http://litanyagainstfear.com/blog/2008/12/05/open-source-collaboration-with-git-and-github/
+Ceci est un aperçu très général du fonctionnement du modèle objet de Git, basé en grande partie sur le  "Git Community Book":http://book.git-scm.com/1_the_git_object_model.html. Les prochains articles reviendrons sur le modèles objet en profondeur, mais cette information est vraiment essentielle pour ceux qui veulent apprendre git. Les images de cette articles sont extraites de ma présentation sur "la collaboration sur des projets opensource avec git et github":http://litanyagainstfear.com/blog/2008/12/05/open-source-collaboration-with-git-and-github/
 
-The most basic data storage is the blob. Git stores *just* the contents of the file for tracking history, and not just the differences between individual files for each change. The contents are then referenced by a 40 character "SHA1 hash":http://en.wikipedia.org/wiki/SHA1 of the contents, which means it's pretty much guaranteed to be unique. Pretty much every object, be it a commit, tree, or blob has a SHA, so learn to love them. Luckily, they're easily referenced by the first 7 characters which are usually enough to identify the whole string.
+L'unité de stockage la plus basique est le blob. Git conserve *uniquement* le contenu du fichier dans l'historique des verions, et pas seulement la différence entre les fichiers entre deux modifications. Le contenu est alors référencé par une "clé de hashage SHA1":http://en.wikipedia.org/wiki/SHA1" de type caractère, ce qui garantie presque son unicité. Presque chaque objet, que cela soit un commit, un arbre ou un blob possède un SHA, vous feriez mieux de commencer dès maintenant à les apprécier. Heureusement, on peut y faire référence de manière simple en utilisant leurs 7 premiers caractères ce qui est habituellement suffisant pour identifier la chaine complète.
 
-One awesome advantage to storing only the content means that if you have two or more copies of the same file in your repository, Git will only store one copy internally. A blob can be represented like so:
+L'immense avantage de stocker uniquement le contenu est que si vous avez deux copies ou plus d'un même fichier dans votre dépôt, Git ne va réellement stocker qu'une seule copie. Un blob peut être représenté ainsi:
 
 p=. !/images/object1.png!
 
-The next object is a tree. These can be thought of as folders or directories: they contain other blobs and trees. 
+Le prochain objet est un arbre. On peut le visualiser comme un répertoire: ils contiennent des répertoires et des blobs.
 
 p=. !/images/object2.png!
 
-Finally, this brings us to the most important object: the commit. Commits can be thought of as snapshots: they know what the trees looked like at one point in time. They also have some other information associated with them, such as the author, date, and a message. 
+Finalement, cela nous amène au plus important des objets : le commit. Les commits peuvent être vu comme des photos: ils gardent une trace de l'état des arbres à un moment donné. Ils conservent également des informations, par exemple l'auteur, la date, et le message associé.
 
 p=. !/images/object3.png!
 
-Commits are organized in a "Directed Acyclic Graph":http://en.wikipedia.org/wiki/Directed_acyclic_graph. For those who missed that lecture in Data Structures about it, basically it means that the commits "flow" in one direction. Usually this direction is simply the path of history for your repository, which could be very simple or quite complex if you have branches. From a broad standpoint it will look something like this:
+Les commits sont organisés en "Graphe Acyclique Dirigé":http://en.wikipedia.org/wiki/Directed_acyclic_graph. Pour ceux qui auraient raté ce cours, cela siginife que les commits sont "orientés" dans une direction. Habituellement cette direction est simplement le flux de votre historique de version, qui peut être très simple ou assez complexe si vous avez des branches. Un aperçu général pourrait ressembler à ça:
 
 p=. !/images/object4.png!
 
-This all becomes much more apparent when using a tool like "GitX":http://gitready.com/intermediate/2009/01/13/visualizing-your-repo.html. You can clearly see the commit objects and their associated data, and then drill down from there to see the commit's tree.
+Cela devient plus clair quand on utilise des outils comme "GitX":http://gitready.com/intermediate/2009/01/13/visualizing-your-repo.html. Vous pouvez voir les objets liés aux commits et leurs données, et à partir de ces données retrouver l'arbre lié à ce commit.
 
 p=. !/images/object5.png!
 
-So now hopefully when you see some of the strange terminology in your commits, you'll understand a little more of how it works. Check out the awesome guide at "Git for Computer Scientists":http://eagain.net/articles/git-for-computer-scientists/ and "Scott Chacon's":http://jointheconversation.org talk on "Getting Git":http://gitcasts.com/git-talk.
+J'espère que maintenant quand vous verrez des mots étranges dans vos commits, vous comprendrez un peut mieux comment cela marche. Je vous conseille la lecture du superbe guide "Git pour l'informatique scientifique":http://eagain.net/articles/git-for-computer-scientists/ et les vidéos de "Scott Chacon":http://jointheconversation.org sur "Getting Git":http://gitcasts.com/git-talk.

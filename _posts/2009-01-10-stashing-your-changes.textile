@@ -1,38 +1,41 @@
 ---
-published: false
+published: true
 layout: post
-title: stashing your changes
+title: 'stasher' ses modifications
 category: beginner
 ---
 
-Stashing is a great way to pause what you're currently working on and come back to it later. For example, if you working on that awesome, brand new feature but someone just found a bug that you need to fix. Add your changes to the index using
+Le 'Stashing' est un moyen efficace d'interrompre son travail en cours et de le reprendre plus tard. Par exemple, si vous développer une nouvelle fonctionnalité géniale mais que quelqu'un vient de trouver un bug dans que vous devez corriger maintenant.
+Ajouter vos modifications à l'index en utilisant
 
 @git add .@
 
-Or add individual files to the index, your pick. Stash your changes away with:
+Ou ajouter des fichiers individuellement, à vous de choisir. Vous pouvez 'stasher' vos modifications avec:
 
 @git stash@
 
-And boom! You're back to your original working state. Got that bug fixed? Bring your work back with:
+Et voila ! Vous voila à nouveau dans votre état d'avant modification. Vous avez corrigé le bug trouvé ? Vous pouvez retrouver votre travail en cours avec:
 
 @git stash apply@
 
-You can also do multiple layers of stashes, so make sure to use 
+Il est possible d'utiliser plusieurs niveaux de 'stash', la commande suivante est alors utile
 
 @git stash list@ 
 
-To check out all of your current ones. If you need to apply a stash from deeper in the stack, that's easy too. Here's how to apply the second stash you've got:
+Pour vérifier tous les stashs en cours. Si vous devez appliquer un stash enfouis dans la pile, c'est possible et facile.
+Voici comment appliquer le deuxième stash :
 
 <code>git stash apply stash@{1}</code>
 
-You can also easily apply the top stash on the stack by using ("Thanks jamesgolick!":http://jamesgolick.com/):
+Vous pouvez aussi utiliser le stash en haut de la pile en utilisant ("Merci à jamesgolick!":http://jamesgolick.com/):
 
 @git stash pop@
 
-A note with this command, it deletes that stash for good, while apply does not. You can manually delete stashes with:
+A propos de cette commande, celle-ci supprime le stash utilisé, contrairement à 'apply' qui le conserve.
+Vous pouvez supprimer manuellement avec la commande suivante:
 
 @git stash drop <id>@
 
-Or delete all of the stored stashes with:
+Ou bien supprimer toutes les stashs de la pile avec:
 
 @git stash clear@
